@@ -27,7 +27,9 @@ def onReceive(packet, interface):
         "timestamp": time.time(),
         "nodeID": packet["fromId"],
         "packetID": packet["id"],
-        "batteryLevel": deviceMetrics["battery"],
+        "rssi": packet["rxRssi"],
+        "snr": packet["rxSnr"],
+        "batteryLevel": deviceMetrics["batteryLevel"],
         "voltage": deviceMetrics["voltage"],
         "airUtilTx": deviceMetrics["airUtilTx"],
         "uptimeSeconds": deviceMetrics["uptimeSeconds"],
@@ -49,7 +51,7 @@ iFace = meshtastic.ble_interface.BLEInterface(address="CFCE6566-57CF-6F07-12E8-2
 print("Connected to " + str(iFace.getLongName()))
 
 # Subscribe to receiving packets
-pub.subscribe(onReceive, "meshtastic.receive.text")
+pub.subscribe(onReceive, "meshtastic.receive")
 
 while True:
     time.sleep(1)
