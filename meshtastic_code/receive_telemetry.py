@@ -6,44 +6,33 @@ from pubsub import pub
 packetHistory = []
 packetsReceived = 0
 
-def getHopsUsed(hopStart, hopLimit):
-    return hopStart - hopLimit
-
-# Not sure how to do this yet where packets sent is in send_text
-def getDeliveryRate(packetsReceived, packetsSent):
-    if (packetsSent == 0):
-        return 0
-    return ((packetsReceived / packetsSent) * 100)
-
-def getLatency(receivedTime, sendTime):
-    return receivedTime - sendTime
+def getAirtime(uptimeSeconds, airUtilTx):
+    return uptimeSeconds * (airUtilTx / 100)
 
 # What to do when a packet is received
 def onReceive(packet, interface):
     global packetsReceived
 
     # Make sure we are only working with text (for now?)
-    if packet["decoded"]["portnum"] != "TEXT_MESSAGE_APP":
+    if packet["decoded"]["portnum"] != "TELEMETRY_APP":
         return
-
-    # Get time packet was sent and received
-    receivedTime = time.time()
-    sendTime = float(packet["decoded"]["payload"].decode())
     
     # Update packets received
     packetsReceived += 1
 
+    deviceMetrics = packet["decoded"]["telemetry"]["deviceMetrics"]
+
     # Create packet dictionary (simplifed one only for data we need)
     packetInfo = {
-        "timestamp": receivedTime,
+        "timestamp": time.time(),
         "nodeID": packet["fromId"],
         "packetID": packet["id"],
-        "rssi": packet["rxRssi"],
-        "snr": packet["rxSnr"],
-        "hopStart": packet["hopStart"],
-        "hopLimit": packet["hopLimit"],
-        "hopsUsed": getHopsUsed(packet["hopStart"], packet["hopLimit"]),
-        "latency": getLatency(receivedTime, sendTime)
+        "batteryLevel": deviceMetrics["battery"],
+        "voltage": deviceMetrics["voltage"],
+        "airUtilTx": deviceMetrics["airUtilTx"],
+        "uptimeSeconds": deviceMetrics["uptimeSeconds"],
+        "channelUtilization": deviceMetrics["channelUtilization"],
+        "airtime": getAirtime(deviceMetrics["uptimeSeconds"], deviceMetrics["airUtilTx"]),
     }
 
     # Add packetInfo to packetHistory
@@ -52,7 +41,7 @@ def onReceive(packet, interface):
     # Print packet data
     print("Packet Info:")
     print(*packetInfo.values(), sep=", ")
-    print
+    print()
 
 # Connect to receiver node
 # Node: Meshtastic_b6c8

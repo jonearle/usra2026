@@ -10,7 +10,7 @@ packetsSent = 0
 # Send test packets every 2 minutes
 while True:
     # Send packet
-    iFace.sendText(str(time.time()))
+    iFace.sendTelemetry()
 
     # Update packets sent
     packetsSent += 1
