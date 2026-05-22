@@ -1,58 +1,35 @@
+import csv
 import time
 import meshtastic
 import meshtastic.ble_interface
 from pubsub import pub
 
-packetHistory = []
-packetsReceived = 0
-
 def getHopsUsed(hopStart, hopLimit):
     return hopStart - hopLimit
-
-# Not sure how to do this yet where packets sent is in send_text
-def getDeliveryRate(packetsReceived, packetsSent):
-    if (packetsSent == 0):
-        return 0
-    return ((packetsReceived / packetsSent) * 100)
 
 def getLatency(receivedTime, sendTime):
     return receivedTime - sendTime
 
 # What to do when a packet is received
 def onReceive(packet, interface):
-    global packetsReceived
-
-    # Make sure we are only working with text (for now?)
-    if packet["decoded"]["portnum"] != "TEXT_MESSAGE_APP":
-        return
-
-    # Get time packet was sent and received
+    # Get metrics
     receivedTime = time.time()
     sendTime = float(packet["decoded"]["payload"].decode())
+    nodeID = packet.get("fromId")
+    packetID = packet.get("requestId")
+    rssi = packet.get("rxRssi")
+    snr = packet.get("rxSnr")
+    hopStart = packet.get("hopStart")
+    hopLimit = packet.get("hopLimit")
+    hopsUsed = getHopsUsed(hopStart, hopLimit)
+    latency = getLatency(receivedTime, sendTime)
+
+    # Add to csv file
+    with open("/Users/Jon/USRA2026/data/packet_data.csv", "a", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([receivedTime,packetID,nodeID,rssi,snr,latency,hopsUsed])
     
-    # Update packets received
-    packetsReceived += 1
-
-    # Create packet dictionary (simplifed one only for data we need)
-    packetInfo = {
-        "timestamp": receivedTime,
-        "nodeID": packet["fromId"],
-        "packetID": packet["id"],
-        "rssi": packet["rxRssi"],
-        "snr": packet["rxSnr"],
-        "hopStart": packet["hopStart"],
-        "hopLimit": packet["hopLimit"],
-        "hopsUsed": getHopsUsed(packet["hopStart"], packet["hopLimit"]),
-        "latency": getLatency(receivedTime, sendTime)
-    }
-
-    # Add packetInfo to packetHistory
-    packetHistory.append(packetInfo)
-
-    # Print packet data
-    print("Packet Info:")
-    print(*packetInfo.values(), sep=", ")
-    print
+    print("Data successfully written to CSV")
 
 # Connect to receiver node
 # Node: Meshtastic_b6c8

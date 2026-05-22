@@ -12,7 +12,4 @@ while True:
     # Send packet
     iFace.sendText(str(time.time()))
 
-    # Update packets sent
-    packetsSent += 1
-
     time.sleep(120)
