@@ -8,7 +8,8 @@ def getHopsUsed(hopStart, hopLimit):
     return hopStart - hopLimit
 
 def getLatency(receivedTime, sendTime):
-    return receivedTime - sendTime
+    latency = receivedTime - sendTime
+    return round(latency, 3)
 
 # What to do when a packet is received
 def onReceive(packet, interface):
