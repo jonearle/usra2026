@@ -40,7 +40,7 @@ def onReceive(packet, interface):
     deliveryRate = getDeliveryRate(int(payload["packetsSent"]), packetsReceived)
 
     # Add to csv file
-    with open("/Users/Jon/USRA2026/data/packet_data.csv", "a", newline="") as file:
+    with open("/Users/Jon/USRA2026/data/desk.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([receivedTime,packetID,nodeID,rssi,snr,latency,deliveryRate])
     

@@ -5,16 +5,17 @@ import streamlit as st
 
 data = pd.read_csv("/Users/Jon/USRA2026/data/desk.csv")
 
-fig, axs = plt.subplots(2, 2)
+fig, axs = plt.subplots(3, 2)
 
 attributes = ["rssi", "snr", "latency", "hopsUsed", "deliveryRate"]
 attribute = 0
 
-for x in range(2):
+for x in range(3):
     for y in range(2):
         axs[x, y].plot(data[attributes[attribute]])
         axs[x, y].set_title(attributes[attribute])
-        attribute += 1
+        if attribute < 6:
+            attribute += 1
 
 st.pyplot(fig)
 

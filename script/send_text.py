@@ -18,6 +18,8 @@ while True:
     # Send packet
     iFace.sendText(json.dumps(payload))
 
+    print(f"Packet {packetsSent} sent")
+
     packetsSent += 1
 
-    time.sleep(30)
+    time.sleep(5)
