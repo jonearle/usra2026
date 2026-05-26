@@ -1,12 +1,13 @@
+import time
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import streamlit as st
 
-data = pd.read_csv("/Users/Jon/USRA2026/data/packet_data.csv")
+data = pd.read_csv("/Users/Jon/USRA2026/data/desk.csv")
 
 fig, axs = plt.subplots(2, 2)
 
-attributes = ["rssi", "snr", "latency", "hopsUsed"]
+attributes = ["rssi", "snr", "latency", "hopsUsed", "deliveryRate"]
 attribute = 0
 
 for x in range(2):
@@ -16,6 +17,9 @@ for x in range(2):
         attribute += 1
 
 st.pyplot(fig)
+
+time.sleep(5)
+st.rerun()
 
 
 
