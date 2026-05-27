@@ -22,4 +22,4 @@ while True:
 
     packetsSent += 1
 
-    time.sleep(5)
+    time.sleep(10)
