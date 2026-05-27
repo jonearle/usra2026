@@ -12,6 +12,7 @@ packetsSent = 1
 while True:
     # Send packet
     iFace.sendPosition()
+    print("Packet sent")
 
     packetsSent += 1
 

@@ -1,7 +1,7 @@
 import csv
 import time
 import meshtastic
-import meshtastic.ble_interface
+import meshtastic.serial_interface
 from pubsub import pub
 
 def getHopsUsed(hopStart, hopLimit):
@@ -9,8 +9,15 @@ def getHopsUsed(hopStart, hopLimit):
 
 # What to do when a packet is received
 def onReceive(packet, interface):
+    # Make sure the packet is a GPS packet
+    if packet["decoded"]["portnum"] != "POSITION_APP":
+        return
+
     # Get position
     position = packet["decoded"]["position"]
+
+    print(packet)
+    print(position)
 
     # Get metrics
     receivedTime = time.time()
@@ -26,7 +33,7 @@ def onReceive(packet, interface):
     # hopsUsed = getHopsUsed(hopStart, hopLimit)
 
     # Add to csv file
-    with open("/Users/Jon/USRA2026/data/wickwire_inside_noelevation/long_fast.csv", "a", newline="") as file:
+    with open("/Users/Jon/USRA2026/data/desk.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([receivedTime,packetID,nodeID,rssi,snr,lat,long,alt])
     
@@ -34,7 +41,7 @@ def onReceive(packet, interface):
 
 # Connect to receiver node
 # Node: Meshtastic_b6c8
-iFace = meshtastic.ble_interface.BLEInterface(address="CFCE6566-57CF-6F07-12E8-2A9C44129E5D")
+iFace = meshtastic.serial_interface.SerialInterface()
 print("Connected to " + str(iFace.getLongName()))
 
 # Subscribe to receiving packets
