@@ -14,10 +14,9 @@ def onReceive(packet, interface):
         return
 
     # Get position
-    position = packet["decoded"]["position"]
-
-    print(packet)
-    print(position)
+    id = packet.get("fromId")
+    node = interface.nodes.get(id, {})
+    position = node.get("position", {})
 
     # Get metrics
     receivedTime = time.time()
