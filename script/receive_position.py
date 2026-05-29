@@ -1,7 +1,10 @@
 import csv
+import json
 import time
 import meshtastic
 import meshtastic.serial_interface
+import requests
+from flask import Flask
 from pubsub import pub
 
 def getHopsUsed(hopStart, hopLimit):
@@ -9,14 +12,11 @@ def getHopsUsed(hopStart, hopLimit):
 
 # What to do when a packet is received
 def onReceive(packet, interface):
-    # Make sure the packet is a GPS packet
-    if packet["decoded"]["portnum"] != "POSITION_APP":
-        return
-
     # Get position
-    id = packet.get("fromId")
-    node = interface.nodes.get(id, {})
-    position = node.get("position", {})
+    try:
+        position = json.loads(packet["decoded"]["payload"].decode())
+    except:
+        return
 
     # Get metrics
     receivedTime = time.time()
@@ -24,9 +24,9 @@ def onReceive(packet, interface):
     packetID = packet.get("id")
     rssi = packet.get("rxRssi")
     snr = packet.get("rxSnr")
-    lat = position.get("latitude")
-    long = position.get("longitude")
-    alt = position.get("altitude")
+    lat = position.get("lat")
+    long = position.get("long")
+    alt = position.get("alt")
     # hopStart = packet.get("hopStart")
     # hopLimit = packet.get("hopLimit")
     # hopsUsed = getHopsUsed(hopStart, hopLimit)
@@ -44,7 +44,7 @@ iFace = meshtastic.serial_interface.SerialInterface()
 print("Connected to " + str(iFace.getLongName()))
 
 # Subscribe to receiving packets
-pub.subscribe(onReceive, "meshtastic.receive.position")
+pub.subscribe(onReceive, "meshtastic.receive")
 
 while True:
     time.sleep(1)

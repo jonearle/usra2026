@@ -1,5 +1,6 @@
 import time
 import json
+import requests
 import meshtastic
 import meshtastic.serial_interface
 
@@ -10,9 +11,16 @@ packetsSent = 1
 
 # Send test packets 10 seconds
 while True:
-    # Send packet
-    iFace.sendPosition()
-    print("Packet sent")
+    # Get location
+    location = requests.get("http://localhost:8080/location").json()
+
+    payload = {
+        "lat": location['lat'],
+        "long": location['long'],
+        "alt": location['alt']
+    }
+
+    iFace.sendData(json.dumps(payload).encode())
 
     packetsSent += 1
 
