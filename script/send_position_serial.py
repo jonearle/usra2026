@@ -16,7 +16,7 @@ while True:
 
     payload = {
         "lat": location['lat'],
-        "long": location['long'],
+        "long": location['lon'],
         "alt": location['alt']
     }
 
