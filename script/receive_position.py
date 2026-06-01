@@ -3,7 +3,6 @@ import json
 import time
 import meshtastic
 import meshtastic.serial_interface
-import requests
 from flask import Flask
 from pubsub import pub
 
@@ -32,7 +31,7 @@ def onReceive(packet, interface):
     # hopsUsed = getHopsUsed(hopStart, hopLimit)
 
     # Add to csv file
-    with open("/Users/Jon/USRA2026/data/bike_tests/bike_north_short_turbo.csv", "a", newline="") as file:
+    with open("/Users/Jon/USRA2026/data/bike_tests/bike_north_long_fast.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([receivedTime,packetID,nodeID,rssi,snr,lat,long,alt])
     

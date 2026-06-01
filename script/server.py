@@ -1,3 +1,4 @@
+import time
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -9,11 +10,14 @@ currentLocation = {}
 @app.route("/location", methods=["POST"])
 def updateLocation():
     global currentLocation
-    currentLocation = request.json
+    packet = request.json
 
-    print(currentLocation)
+    if time.time() - packet['tst'] < 300:
+        currentLocation = packet
+        print(currentLocation)
+        return "OK"
 
-    return "OK"
+    return "Location is stale"
 
 # Access server with GET
 @app.route("/location", methods=["GET"])
