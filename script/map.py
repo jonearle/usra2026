@@ -5,7 +5,7 @@ map = folium.Map(location=[44.6488, -63.5930], zoom_start=11)
 
 routeCoordinates = []
 
-with open("/Users/Jon/USRA2026/data/bike_tests/bike_south_short_turbo.csv", mode='r') as file:
+with open("/Users/Jon/USRA2026/data/bike_tests/bike_nearby_long_fast.csv", mode='r') as file:
     reader = csv.DictReader(file)
     next(reader)
     for row in reader:
@@ -16,4 +16,4 @@ with open("/Users/Jon/USRA2026/data/bike_tests/bike_south_short_turbo.csv", mode
 
 folium.PolyLine(routeCoordinates).add_to(map)
     
-map.save("/Users/Jon/USRA2026/data/routes/south_short_turbo.html")
+map.save("/Users/Jon/USRA2026/data/routes/nearby_long_fast.html")
