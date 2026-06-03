@@ -31,7 +31,7 @@ def onReceive(packet, interface):
     # hopsUsed = getHopsUsed(hopStart, hopLimit)
 
     # Add to csv file
-    with open("/home/jonearle/usra2026/data/bike_tests/bike_south_long_fast2.csv", "a", newline="") as file:
+    with open("/home/jonearle/usra2026/data/bike_tests/bike_north_long_fast3.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([receivedTime,packetID,nodeID,rssi,snr,lat,long,alt])
     
