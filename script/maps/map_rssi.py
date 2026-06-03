@@ -5,7 +5,7 @@ map = folium.Map(location=[44.6488, -63.5930], zoom_start=5)
 
 routeCoordinates = []
 
-with open("/home/jonearle/usra2026/data/bike_tests/bike_south_long_fast2.csv", mode='r') as file:
+with open("/home/jonearle/usra2026/data/bike_tests/bike_north_long_fast3.csv", mode='r') as file:
     reader = csv.DictReader(file)
     next(reader) # skip header
 
