@@ -5,27 +5,23 @@ map = folium.Map(location=[44.6488, -63.5930], zoom_start=5)
 
 routeCoordinates = []
 
-with open("/Users/Jon/USRA2026/data/bike_tests/bike_all_short_turbo.csv", mode='r') as file:
+with open("/Users/Jon/USRA2026/data/bike_tests/bike_all_long_fast.csv", mode='r') as file:
     reader = csv.DictReader(file)
     next(reader) # skip header
 
     for row in reader:
         lat = float(row['lat'])
         long = float(row['long'])
-        snr = float(row['snr'])
+        rssi = float(row['rssi'])
 
-        if snr > 10:
-            color = "darkgreen"
-        elif snr > 5:
+        if rssi > -90:
             color = "green"
-        elif snr > 0:
+        elif rssi > -110:
             color = "yellow"
-        elif snr > -5:
+        elif rssi > -130:
             color = "orange"
-        elif snr > -10:
+        else :
             color = "red"
-        else:
-            color = "darkred"
 
         folium.CircleMarker(
             location=[lat, long],
@@ -36,4 +32,4 @@ with open("/Users/Jon/USRA2026/data/bike_tests/bike_all_short_turbo.csv", mode='
             fill_opacity=1.0
         ).add_to(map)
     
-map.save("/Users/Jon/USRA2026/data/routes/snr/short_turbo.html")
+map.save("/Users/Jon/USRA2026/data/routes/desk.html")
