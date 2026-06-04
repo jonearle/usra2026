@@ -27,12 +27,15 @@ async def main():
 
         locationData = json.loads(msg.payload['text'])
         lat = locationData["lat"]
-        long = locationData.get["long"]
-        alt = locationData.get["alt"]
+        long = locationData["long"]
+        alt = locationData["alt"]
 
         radioStats = await meshcore.commands.get_stats_radio()
-        rssi = radioStats.payload.get('rssi')
-        snr = radioStats.payload.get('snr')
+
+        print(radioStats.payload)
+
+        rssi = radioStats.payload["last_rssi"]
+        snr = radioStats.payload["last_snr"]
 
         # Open CSV file and write
         with open(

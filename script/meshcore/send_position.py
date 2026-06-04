@@ -54,7 +54,6 @@ async def main():
                 wantedContact, 
                 json.dumps(payload)
             )
-            print(result) # for initial debug
             if result.type == EventType.ERROR:
                 print("Error sending message")
         else:
