@@ -48,9 +48,9 @@ async def main():
 
         # Send msg
         if wantedContact is not None:
-            result = await meshcore.commands.send_binary_req(
+            result = await meshcore.commands.send_msg(
                 wantedContact, 
-                json.dumps(payload).encode('utf-8')
+                json.dumps(payload)
             )
             print(result) # for initial debug
             if result.type == EventType.ERROR:
@@ -58,6 +58,6 @@ async def main():
         else:
             print("Could not find contact in question")
 
-        asyncio.sleep(10)
+        await asyncio.sleep(10)
 
 asyncio.run(main())

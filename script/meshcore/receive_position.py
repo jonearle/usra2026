@@ -16,7 +16,16 @@ async def main():
         return
     print("Device successfully connected")
 
-    
+    # Get messages
+    while True:
+        msg = await meshcore.commands.get_msg(timeout=1)
+
+        if msg.type == EventType.NO_MORE_MSGS:
+            print("No messages")
+            continue
+
+        print()
+
     await meshcore.disconnect()
 
 asyncio.run(main())
