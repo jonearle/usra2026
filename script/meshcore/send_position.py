@@ -26,8 +26,10 @@ async def main():
     
     # Find contact: change name where needed
     # Can find adv_name with meshcli
+    # LoRa32 = C53894B0
+    # T-Beam = 584C7D9A
     for contact in contacts.payload.values():
-        if contact["adv_name"] == "C53894B0":
+        if contact["adv_name"] == "584C7D9A":
             wantedContact = contact
             break
 

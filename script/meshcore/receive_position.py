@@ -1,4 +1,6 @@
 import asyncio
+import csv
+import json
 from meshcore import MeshCore, EventType
 
 async def main():
@@ -16,16 +18,31 @@ async def main():
         return
     print("Device successfully connected")
 
-    # Get messages
+    # Get messages and write data to CSV
     while True:
         msg = await meshcore.commands.get_msg(timeout=1)
 
-        if msg.type == EventType.NO_MORE_MSGS:
-            print("No messages")
+        if msg.type != EventType.CONTACT_MSG_RECV:
             continue
 
-        print()
+        locationData = json.loads(msg.payload['text'])
+        lat = locationData["lat"]
+        long = locationData.get["long"]
+        alt = locationData.get["alt"]
 
-    await meshcore.disconnect()
+        radioStats = await meshcore.commands.get_stats_radio()
+        rssi = radioStats.payload.get('rssi')
+        snr = radioStats.payload.get('snr')
+
+        # Open CSV file and write
+        with open(
+            "/Users/Jon/USRA2026/data/bike_comparison_test/meshcore.csv", 
+            "a", 
+            newline=""
+        ) as file:
+            writer = csv.writer(file)
+            writer.writerow([rssi, snr, lat, long, alt])
+
+        print("Data successfully written to CSV")
 
 asyncio.run(main())
