@@ -26,7 +26,7 @@ async def main():
     # Find contact: change name where needed
     # Can find adv_name with meshcli
     for contact in contacts.payload.values():
-        if contact["adv_name"] == "C53894B0":
+        if contact["adv_name"] == "1B26AC85":
             wantedContact = contact
             break
     

@@ -39,7 +39,7 @@ async def main():
 
         # Open CSV file and write
         with open(
-            "/Users/Jon/USRA2026/data/bike_comparison_test/meshcore.csv", 
+            "/Users/Jon/USRA2026/data/bike_comparison_test/meshcore2.csv", 
             "a", 
             newline=""
         ) as file:
