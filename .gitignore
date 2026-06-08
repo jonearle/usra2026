@@ -5,6 +5,9 @@ venv/
 # Mesh Metrics Software
 mesh-metrics/
 
+# meshcore-packet-capture
+meshcore-packet-capture/
+
 # PowerPoint Recovery Files
 ~$*
 

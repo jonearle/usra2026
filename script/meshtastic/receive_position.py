@@ -20,20 +20,20 @@ def onReceive(packet, interface):
     # Get metrics
     receivedTime = time.time()
     nodeID = packet.get("fromId")
-    packetID = packet.get("id")
+    # packetID = packet.get("id")
     rssi = packet.get("rxRssi")
     snr = packet.get("rxSnr")
     lat = position.get("lat")
     long = position.get("long")
     alt = position.get("alt")
-    # hopStart = packet.get("hopStart")
-    # hopLimit = packet.get("hopLimit")
-    # hopsUsed = getHopsUsed(hopStart, hopLimit)
+    hopStart = packet.get("hopStart")
+    hopLimit = packet.get("hopLimit")
+    hopsUsed = getHopsUsed(hopStart, hopLimit)
 
     # Add to csv file
     with open("/Users/Jon/USRA2026/data/bike_comparison_test/meshtastic.csv", "a", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow([receivedTime,rssi,snr,lat,long,alt])
+        writer.writerow([receivedTime,nodeID,rssi,snr,lat,long,alt,hopsUsed])
     
     print("Data successfully written to CSV")
 

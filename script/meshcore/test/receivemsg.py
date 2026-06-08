@@ -25,25 +25,26 @@ async def main():
         if msg.type != EventType.CONTACT_MSG_RECV:
             continue
 
-        locationData = json.loads(msg.payload['text'])
-        lat = locationData["lat"]
-        long = locationData["long"]
-        alt = locationData["alt"]
-
         radioStats = await meshcore.commands.get_stats_radio()
 
-        rssi = radioStats.payload["last_rssi"]
-        snr = radioStats.payload["last_snr"]
+        #debug
+        coreStats = await meshcore.commands.get_stats_core()
+        packetStats = await meshcore.commands.get_stats_packets()
 
-        # Open CSV file and write
-        with open(
-            "/Users/Jon/USRA2026/data/desk.csv", 
-            "a", 
-            newline=""
-        ) as file:
-            writer = csv.writer(file)
-            writer.writerow([rssi, snr, lat, long, alt])
+        print(coreStats.payload)
+        print()
+        print(radioStats.payload)
+        print()
+        print(packetStats.payload)
+        print()
+        print(msg)
+        print()
+        print(vars(msg))
+        print()
+        print(msg.__dict__)
+        print()
 
-        print("Data successfully written to CSV")
+        print("--------------------------")
+        print()
 
 asyncio.run(main())
