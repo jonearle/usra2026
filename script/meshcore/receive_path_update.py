@@ -32,19 +32,19 @@ async def main():
     if meshcore is None:
         return
 
-    # Subscribe to raw data events
-    def handle_packet(event):
+    while True:
+        msg = await meshcore.commands.get_msg(timeout=1)
+
         timestamp = time.time()
 
-        msg = json.loads(event.payload["txt"])
+        if msg is None or msg.type != EventType.CONTACT_MSG_RECV:
+            continue
 
-        data = [timestamp, msg["lat"], msg["lon"], msg["alt"], msg["packetID"]]
+        payload = json.loads(msg.payload['text'])
+        data = [timestamp, payload["lat"], payload["lon"], payload["alt"], payload["packetID"]]
 
         csvWrite("/Users/Jon/USRA2026/data/desk.csv", data)
 
-    meshcore.subscribe(EventType.CONTACT_MSG_RECV, handle_packet)
-
-    while True:
         await asyncio.sleep(1)
 
 asyncio.run(main())
