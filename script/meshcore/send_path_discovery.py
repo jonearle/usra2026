@@ -1,4 +1,5 @@
 import asyncio
+import csv
 import requests
 import json
 import inspect
@@ -37,20 +38,37 @@ async def main():
     def handle_rx(event):
         print(event.payload)
 
-    meshcore.subscribe(
-        EventType.RX_LOG_DATA,
-        handle_rx
-)
+    # Subscribe to radio log data
+    meshcore.subscribe(EventType.RX_LOG_DATA,handle_rx)
 
     while True:
-        # Send msg
+        # Send path discovery request
         if wantedContact is not None:
             result = await meshcore.commands.send_path_discovery_sync(
                 wantedContact
             )
-            print(result)
         else:
             print("Could not find contact in question")
+            break
+
+        if result is None:
+            print("Result is none")
+            await asyncio.sleep(10)
+            continue
+
+        rssi = result['rssi']
+        snr = result['snr']
+        path_len = result['path_len']
+        path = result['path']
+
+        # Open CSV file and write
+        with open(
+            "data/mesh_routing_test/test.csv", 
+            "a", 
+            newline=""
+        ) as file:
+            writer = csv.writer(file)
+            writer.writerow([rssi, snr, path_len, path])
 
         await asyncio.sleep(10)
 
