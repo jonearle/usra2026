@@ -26,21 +26,22 @@ async def main():
     # Find contact: change name where needed
     # Can find adv_name with meshcli
     for contact in contacts.payload.values():
-        if contact["adv_name"] == "1B26AC85":
+        if contact["adv_name"] == "1057D6AD":
             wantedContact = contact
             break
     
     # Send msg
-    if wantedContact is not None:
-        result = await meshcore.commands.send_msg(
-            wantedContact, 
-            "test"
-        )
-        if result.type == EventType.ERROR:
-            print("Error sending message")
-    else:
-        print("Could not find contact in question")
+    while True:
+        if wantedContact is not None:
+            result = await meshcore.commands.send_msg(
+                wantedContact, 
+                "test"
+            )
+            if result.type == EventType.ERROR:
+                print("Error sending message")
+        else:
+            print("Could not find contact in question")
 
-    await meshcore.disconnect()
+        await asyncio.sleep(2)
 
 asyncio.run(main())
