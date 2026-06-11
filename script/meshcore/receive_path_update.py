@@ -40,8 +40,7 @@ async def main():
         if msg is None or msg.type != EventType.CONTACT_MSG_RECV:
             continue
 
-        payload = json.loads(msg.payload['text'])
-        data = [timestamp, payload["lat"], payload["lon"], payload["alt"], payload["packetID"]]
+        data = [timestamp, msg.payload['text']]
 
         csvWrite("/Users/Jon/USRA2026/data/desk.csv", data)
 

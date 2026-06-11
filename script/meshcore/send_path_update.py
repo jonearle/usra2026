@@ -31,7 +31,7 @@ async def sendPayload(interface, payload, contactInfo):
     # Send message (to forces contact update)
     result = await interface.commands.send_msg(
         contactInfo, 
-        json.dumps(payload)
+        payload
     )
     if result is None:
         print("Failed to send payload")
@@ -39,24 +39,6 @@ async def sendPayload(interface, payload, contactInfo):
     else:
         print("Sent payload successfully")
         return 1
-
-# Obtains GPS data from web server
-async def getGPSData():
-    # Get location
-    try:
-        location = requests.get("http://localhost:8080/location").json()
-    except Exception as e:
-        print(f"GPS Error: {e}")
-        await asyncio.sleep(5)
-        return None
-
-    gpsData = {
-        "lat": location['lat'],
-        "lon": location['lon'],
-        "alt": location['alt']
-    }
-    
-    return gpsData
 
 # Function will find the contact in question 
 # and in doing so will give the routing details as
@@ -89,24 +71,16 @@ async def main():
     contactInfo = await contactLookupPathUpdate(meshcore, "1057D6AD")
 
     # Track sent messages for delivery rate
-    packetID = 0
+    packetID = 1
 
     while True:
         timestamp = time.time()
-
-        # Get location
-        payload = await getGPSData()
-        if payload == None:
-            continue
-        
-        # Assign packet id
-        payload["packetID"] = packetID
         
         # Send message containing GPS data
         success = 0
-        success += await sendPayload(meshcore, payload, contactInfo)
-        if success != 0:
-            packetID += 1
+        success += await sendPayload(meshcore, packetID, contactInfo)
+        if success == 0:
+            continue
 
         await asyncio.sleep(1)
 
@@ -117,14 +91,13 @@ async def main():
         path_len = contactInfo['out_path_len']
         path = contactInfo['out_path']
         lastmod = contactInfo['lastmod']
-        lat = payload["lat"]
-        lon = payload["lon"]
-        alt = payload["alt"]
 
-        data = [timestamp, payload["packetID"], path_len, path, lastmod, lat, lon, alt]
+        data = [timestamp, packetID, path_len, path, lastmod]
 
         # Open CSV file and write
         csvWrite("/Users/Jon/USRA2026/data/desk.csv", data)
+
+        packetID += 1
 
         await asyncio.sleep(10)
 
