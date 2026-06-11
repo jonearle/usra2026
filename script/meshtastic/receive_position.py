@@ -1,10 +1,9 @@
-import csv
 import json
 import time
 import meshtastic
 import meshtastic.serial_interface
-from flask import Flask
 from pubsub import pub
+from csv_write import csvWrite
 
 def getHopsUsed(hopStart, hopLimit):
     return hopStart - hopLimit
@@ -31,10 +30,7 @@ def onReceive(packet, interface):
     hopsUsed = getHopsUsed(hopStart, hopLimit)
 
     # Add to csv file
-    with open("/Users/Jon/USRA2026/data/bike_comparison_test/meshtastic.csv", "a", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow([receivedTime,nodeID,rssi,snr,lat,long,alt,hopsUsed])
-    
+    csvWrite("/Users/Jon/USRA2026/data/bike_comparison_test/meshtastic.csv", [receivedTime,nodeID,rssi,snr,lat,long,alt,hopsUsed])    
     print("Data successfully written to CSV")
 
 # Connect to receiver node
