@@ -17,6 +17,11 @@ def on_receive(packet, interface):
             f.write("=" * 80)
             f.write("\n\n")
 
+        print(
+            f"FROM={packet.get('fromId')} "
+            f"PORT={packet.get('decoded', {}).get('portnum')}"
+        )
+
 # Connect to receiver node
 iFace = meshtastic.serial_interface.SerialInterface()
 print("Connected to " + str(iFace.getLongName()))
