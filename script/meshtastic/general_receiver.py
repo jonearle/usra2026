@@ -15,8 +15,9 @@ def onReceive(packet, interface):
 
         air_util_tx_ms = payload["airUtilTx"]
         uptime_seconds = payload["uptimeSeconds"]
+        battery = payload["batteryLevel"]
 
-        csvWrite("/Users/Jon/usra2026/data/desk.csv", [receivedTime, nodeID, air_util_tx_ms, uptime_seconds])
+        csvWrite("/Users/Jon/usra2026/data/desk.csv", [receivedTime, nodeID, air_util_tx_ms, uptime_seconds, battery])
 
 
     if packet["decoded"]["portnum"] == "TEXT_MESSAGE_APP":
