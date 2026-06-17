@@ -13,4 +13,4 @@ while count <= 1000:
 
     count += 1
 
-    time.sleep(10)
+    time.sleep(5)

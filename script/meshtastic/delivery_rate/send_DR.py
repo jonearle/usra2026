@@ -13,5 +13,5 @@ while packetID <= 1000:
 
     packetID += 1
 
-    time.sleep(10)
+    time.sleep(5)
 

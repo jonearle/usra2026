@@ -8,6 +8,7 @@ from csv_write import csvWrite
 def onReceive(packet, interface):
     receivedTime = time.time()
 
+    '''
     if packet["decoded"]["portnum"] == "TELEMETRY_APP":
         payload = packet["decoded"]["telemetry"]["deviceMetrics"]
 
@@ -17,22 +18,25 @@ def onReceive(packet, interface):
         uptime_seconds = payload["uptimeSeconds"]
         battery = payload["batteryLevel"]
 
-        csvWrite("/Users/Jon/usra2026/data/desk.csv", [receivedTime, nodeID, air_util_tx_ms, uptime_seconds, battery])
+        csvWrite("/Users/Jon/usra2026/data/desk.csv", [receivedTime, nodeID, air_util_tx_ms, uptime_seconds, battery])'''
 
 
     if packet["decoded"]["portnum"] == "TEXT_MESSAGE_APP":
         payload = packet["decoded"]["payload"].decode("utf-8")
 
+        rssi = packet.get("rxRssi")
+        snr = packet.get("rxSnr")
+
         try:
             int(payload) # If this is successful that means it is a delivery_rate oriented message
 
-            csvWrite("/Users/Jon/usra2026/data/delivery_rate/meshtastic_delivery_rate.csv", [payload, receivedTime])   
+            csvWrite("/Users/Jon/usra2026/data/delivery_rate/meshtastic_delivery_rate.csv", [payload, receivedTime, rssi, snr])   
             print(f"{payload}, Data successfully written to CSV")
         except ValueError:
             try:
                 float(payload)
 
-                csvWrite("/Users/Jon/usra2026/data/latency/meshtastic_latency.csv", [payload, receivedTime])   
+                csvWrite("/Users/Jon/usra2026/data/latency/meshtastic_latency.csv", [payload, receivedTime, rssi, snr])   
                 print(f"{payload}, Data successfully written to CSV")
             except ValueError:
                 print("Not the correct packet")

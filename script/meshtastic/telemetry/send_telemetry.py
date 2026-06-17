@@ -7,4 +7,4 @@ iFace = meshtastic.serial_interface.SerialInterface()
 
 iFace.sendTelemetry(destinationId="!6c73daa0") # Add once route is chosen
 
-time.sleep(10)
+time.sleep(5)

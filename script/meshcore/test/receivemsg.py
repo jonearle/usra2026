@@ -1,6 +1,5 @@
 import asyncio
 import csv
-import json
 from meshcore import MeshCore, EventType
 
 async def main():
