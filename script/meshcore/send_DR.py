@@ -1,49 +1,29 @@
 import asyncio
 from meshcore import MeshCore, EventType
+from meshcore_essentials import connectToDeviceBLE, getContact
 
 async def main():
     packetID = 0
 
-    # Connect to device
-    # T-Beam v1.1 = B93730B7-CA50-4718-2293-57AE6FF3348B
-    try:
-        meshcore = await MeshCore.create_ble(
-            "B93730B7-CA50-4718-2293-57AE6FF3348B"
-            )
-    except ConnectionError:
-        print("Failed to connect")
-        return
-    if meshcore is None:
-        print("Failed to connect")
-        return
-    print("Device successfully connected")
+    meshcore = connectToDeviceBLE("B93730B7-CA50-4718-2293-57AE6FF3348B") # Change as needed
 
-    # Get contacts
-    wantedContact = None
-    contacts = await meshcore.commands.get_contacts()
-    if contacts.type == EventType.ERROR:
-        print("Error getting contacts")
-        return
-    
-    # Find contact: change name where needed
-    # Can find adv_name with meshcli
-    for contact in contacts.payload.values():
-        if contact["adv_name"] == "1057D6AD":
-            wantedContact = contact
-            break
+    wantedContact = getContact(meshcore, "1057D6AD") # Change as needed
     
     # Send msg
-    while True:
+    while packetID < 500:
         if wantedContact is not None:
             result = await meshcore.commands.send_msg(
                 wantedContact, 
                 str(packetID)
             )
+
             if result.type == EventType.ERROR:
                 print("Error sending message")
+
+            packetID += 1
         else:
             print("Could not find contact in question")
 
-        await asyncio.sleep(2)
+        await asyncio.sleep(5)
 
 asyncio.run(main())

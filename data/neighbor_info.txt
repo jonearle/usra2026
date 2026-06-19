@@ -1,3 +1,7 @@
+================================================================================
+Friday, June 12
+================================================================================
+
 {'from': 1819531936, 'to': 1, 'decoded': {'portnum': 'NEIGHBORINFO_APP', 'payload': b'\x08\xa0\xb5\xcf\xe3\x06\x10\xa0\xb5\xcf\xe3\x06\x18\xc0p"\x0b\x08\x88\xe0\xfe\xd6\r\x15\x00\x00\xe8@"\x0b\x08\xd4\xf1\xfe\xd6\r\x15\x00\x00\xf0@"\x0b\x08\xc8\xed\xfe\xd6\r\x15\x00\x00\x10A"\x0b\x08\xcc\xe1\xfe\xd6\r\x15\x00\x00\x8a\xc1', 'bitfield': 0, 'neighborinfo': {'nodeId': 1819531936, 'lastSentById': 1819531936, 'nodeBroadcastIntervalSecs': 14400, 'neighbors': [{'nodeId': 3672092680, 'snr': 7.25}, {'nodeId': 3672094932, 'snr': 7.5}, {'nodeId': 3672094408, 'snr': 9.0}, {'nodeId': 3672092876, 'snr': -17.25}], 'raw': node_id: 1819531936
 last_sent_by_id: 1819531936
 node_broadcast_interval_secs: 14400
@@ -136,4 +140,7 @@ relay_node: 160
 , 'fromId': '!6c73daa0', 'toId': None}
 
 ================================================================================
+Tuesday, June 16
+================================================================================
+
 
