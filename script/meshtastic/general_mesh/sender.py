@@ -26,7 +26,7 @@ pub.subscribe(onReceive, "meshtastic.receive.routing")
 localID = 1
 
 # Send test packets 10 seconds
-while localID <= 500:
+while localID <= 300:
     payloadString = f"{localID}, {time.time()}"
 
     iface.sendText(text=payloadString, destinationId='!dadfb03c', wantAck=True) # Add once route is chosen
