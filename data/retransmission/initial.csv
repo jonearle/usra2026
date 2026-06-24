@@ -1,0 +1,2 @@
+timestamp, nodeId, uptimeSeconds,airUtilTx,numPacketsTx,numPacketsRx,numOnlineNodes,numTotalNodes,numRxDupe,numTxRelay,heapTotalBytes,heapFreeBytes
+
