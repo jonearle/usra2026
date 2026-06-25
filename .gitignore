@@ -11,4 +11,7 @@ meshcore-packet-capture/
 # PowerPoint Recovery Files
 ~$*
 
+# pycache
+__pycache__
+
 
