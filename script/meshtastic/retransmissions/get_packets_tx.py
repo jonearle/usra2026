@@ -28,6 +28,21 @@ for line in result.stdout.splitlines():
         except ValueError:
             pass
 
-line = [time.time(), node_id] + list(stats.values())
+try:
+    line = [
+        time.time(), 
+        node_id, 
+        stats["uptimeSeconds"],
+        stats["channelUtilization"],
+        stats["airUtilTx"],
+        stats["numPacketsTx"],
+        stats["numPacketsRx"],
+        stats["numPacketsRxBad"],
+        stats["numRxDupe"],
+        stats["numTxRelay"],
+        stats["numOnlineNodes"],
+        stats["numTotalNodes"]]
 
-csvWrite("/Users/Jon/usra2026/data/retransmission/retransmission.csv", line)
+    csvWrite("/Users/Jon/usra2026/data/retransmission/final.csv", line)
+except:
+    print("wait")

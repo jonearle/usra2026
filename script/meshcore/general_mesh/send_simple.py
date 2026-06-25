@@ -4,19 +4,6 @@ from csv_write import csvWrite
 from meshcore import MeshCore, EventType
 from meshcore_essentials import connectToDeviceBLE, getContact
 
-async def handleACK(event):
-    receivedTime = time.time()
-    payload = event.payload
-    requestID = payload.get("code") 
-    rssi = payload.get("rssi")
-    snr = payload.get("snr")
-
-    csvWrite(
-        "/Users/Jon/usra2026/data/PlexToGB/5sec_ACK_MC.csv", 
-        [requestID, receivedTime, rssi, snr]
-        )   
-    print(f"{requestID}, Data successfully written to CSV")
-
 async def main():
     localID = 0
 

@@ -1,2 +1,7 @@
-timestamp, nodeId, uptimeSeconds,airUtilTx,numPacketsTx,numPacketsRx,numOnlineNodes,numTotalNodes,numRxDupe,numTxRelay,heapTotalBytes,heapFreeBytes
-
+timestamp, nodeId, uptimeSeconds,channelUtilization,airUtilTx,numPacketsTx,numPacketsRx,numPacketsRxBad,numRxDupe,numTxRelay,numOnlineNodes,numTotalNodes
+1782308803.6791291,!6c73daa0,61.0,7.8933334,0.06255556,3.0,7.0,2.0,3.0,1.0,9.0,47.0
+1782309202.331554,!dadfb0cc,61.0,19.748333,0.12286111,6.0,14.0,1.0,7.0,5.0,62.0,62.0
+1782310165.334353,!dadfb8d4,61.0,10.715,0.05611111,2.0,5.0,3.0,1.0,1.0,23.0,66.0
+1782310732.606525,!dadfb008,122.0,7.621667,0.06408334,2.0,8.0,4.0,2.0,1.0,2.0,79.0
+1782312554.922082,!dadfb03c,1.0,0.028055554,1.0,41.0,41.0
+1782312597.389235,!dadfb03c,61.0,0.028055554,1.0,41.0,41.0
