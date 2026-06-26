@@ -16,7 +16,7 @@ def onReceive(packet, interface):
         error = routing.get('errorReason')
 
         if error == 'NONE' or error == 'ERROR_NONE' or error == 0:
-            csvWrite("/Users/Jon/usra2026/data/PlexToGB/1min_ACK.csv", [requestID, receivedTime, rssi, snr])   
+            csvWrite("/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_morning_ACK.csv", [requestID, receivedTime, rssi, snr])   
             print(f"{requestID}, Data successfully written to CSV")
 
 
@@ -26,7 +26,7 @@ pub.subscribe(onReceive, "meshtastic.receive.routing")
 localID = 1
 
 # Send test packets 10 seconds
-while localID <= 60:
+while localID <= 50:
     payloadString = f"{localID}, {time.time()}"
 
     iface.sendText(text=payloadString, destinationId='!dadfb8d4', wantAck=True) # Add once route is chosen
@@ -34,6 +34,6 @@ while localID <= 60:
 
     localID += 1
 
-    time.sleep(60)
+    time.sleep(20)
 
 iface.close()

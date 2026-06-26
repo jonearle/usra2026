@@ -1,11 +1,18 @@
-import json
-import time
 import meshtastic
-import meshtastic.serial_interface
+import time
 from pubsub import pub
 from csv_write import csvWrite
 
-# What to do when a packet is received
+currentPath = ""
+intervals = [1450, 2200, 3200, 4200, 16200]
+paths = [
+    "/Users/Jon/usra2026/data/PlexToGB/5sec/5sec_night.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_night.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/40sec/40sec_night.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/1min/1min_night.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/5min/5min_night.csv"
+]
+
 def onReceive(packet, interface):
     receivedTime = time.time()
 
@@ -26,17 +33,17 @@ def onReceive(packet, interface):
         rssi = packet.get("rxRssi")
         snr = packet.get("rxSnr")
 
-        csvWrite("/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_morning.csv", [packetID, fromId, toId, relayNode, hops, payload, rssi, snr])   
+        csvWrite(currentPath, [packetID, fromId, toId, relayNode, hops, payload, rssi, snr])   
         print(f"{payload}, Data successfully written to CSV")
 
-
 # Connect to receiver node
-# Node: Meshtastic_b6c8
 iFace = meshtastic.serial_interface.SerialInterface()
 print("Connected to " + str(iFace.getLongName()))
 
-# Subscribe to receiving packets
-pub.subscribe(onReceive, "meshtastic.receive")
+for interval, path in zip(intervals, paths):
+    currentPath = path
 
-while True:
-    time.sleep(1)
+    startTime = time.time()
+    while time.time() - startTime < interval:
+        time.sleep(1)
+

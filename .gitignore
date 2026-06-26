@@ -14,4 +14,7 @@ meshcore-packet-capture/
 # pycache
 __pycache__
 
+# env file
+.env
+
 
