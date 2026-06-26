@@ -4,13 +4,14 @@ from pubsub import pub
 from csv_write import csvWrite
 
 currentPath = ""
-intervals = [1450, 2200, 3200, 4200, 16200]
+# 1450, 2200, 3200, 4200, 16200
+intervals = [3200, 4200]
 paths = [
-    "/Users/Jon/usra2026/data/PlexToGB/5sec/5sec_night.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_night.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/40sec/40sec_night.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/1min/1min_night.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/5min/5min_night.csv"
+    #"/Users/Jon/usra2026/data/PlexToGB/5sec/5sec_night.csv",
+    #"/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_night.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/40sec/40sec_morning.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/1min/1min_morning.csv"
+    #"/Users/Jon/usra2026/data/PlexToGB/5min/5min_night.csv"
 ]
 
 def onReceive(packet, interface):
