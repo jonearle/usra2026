@@ -5,14 +5,14 @@ from pubsub import pub
 from csv_write import csvWrite
 
 currentPath = ""
-waitInterval = 360 # usually is 1200
-intervals = [40, 60] # 5, 20, 40, 60, 300
+waitInterval = 1200 # usually is 1200
+intervals = [5, 20, 40, 60, 300] # 5, 20, 40, 60, 300
 paths = [
-    #"/Users/Jon/usra2026/data/PlexToGB/5sec/5sec_night_ACK.csv",
-    #"/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_night_ACK.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/40sec/40sec_morning_ACK.csv",
-    "/Users/Jon/usra2026/data/PlexToGB/1min/1min_morning_ACK.csv",
-    #"/Users/Jon/usra2026/data/PlexToGB/5min/5min_night_ACK.csv"
+    "/Users/Jon/usra2026/data/PlexToGB/5sec/5sec_afternoon_ACK.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/20sec/20sec_afternoon_ACK.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/40sec/40sec_afternoon_ACK.csv",
+    "/Users/Jon/usra2026/data/PlexToGB/1min/1min_afternoon_ACK.csv"
+    #"/Users/Jon/usra2026/data/PlexToGB/5min/5min_afternoon_ACK.csv"
 ]
 
 def onReceive(packet, interface):
@@ -31,7 +31,7 @@ def onReceive(packet, interface):
             print(f"{requestID}, Data successfully written to CSV")
 
 
-# Send test packets 10 seconds
+# Send packets
 for interval, path in zip(intervals, paths):
     currentPath = path
 
