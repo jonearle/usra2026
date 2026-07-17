@@ -30,7 +30,7 @@ try:
 
         localID += 1
 
-        time.sleep(30)
+        time.sleep(20)
 except (KeyboardInterrupt, MeshInterface.MeshInterfaceError):
-    print(f"Packets sent: {localID}")
+    print(f"Packets sent: {localID - 1}")
 
