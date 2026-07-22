@@ -7,27 +7,31 @@ def logToCSV(resultLog):
     # Get list of tokens where each one is either the node or the SNR
     tokens = []
     for line in resultLog.strip().split("\n"):
-        if "traced towards" in line or "traced back" in line:
+        if "traced towards" in line or "traced back" in line or "Connected to radio" in line or "traceroute request" in line:
             continue    
         else:
             direction = [] # Each direction list is the tokens for that direction (forward or backward).
+
             nodes = line.split("-->")
             for node in nodes:
                 matches = re.findall(r"![a-fA-F0-9]+|[-+]?\d+(?:\.\d+)?dB", node)
                 for match in matches:
                     direction.append(match)
-            tokens.append(direction)
+
+            tokens.append(direction) 
+            
 
     # Get path from tokens list and write to CSV
     for direction in tokens:
         path = direction[0] + ', ' + direction[1] + ', ' + direction[2] # First path is the first 3
-        csvWrite("/Users/Jon/usra2026/data/traceroutes/goldberg.csv", path)
+        csvWrite("/home/pc1/mesh-project/usra2026/data/traceroutes/goldberg.csv", path)
+
         for x in range(1, len(direction) - 3, 2): # rest of the paths
             fromNode = direction[x]
             toNode = direction[x + 2]
             snr = direction[x + 3]
             path = fromNode + ', ' + toNode + ', ' + snr
-            csvWrite("/Users/Jon/usra2026/data/traceroutes/goldberg.csv", path)
+            csvWrite("/home/pc1/mesh-project/usra2026/data/traceroutes/goldberg.csv", path)
 
 def __main__():
     addresses = ['6c73daa0', 'dadfb0cc', 'dadfb6c8', 'dadfb008', 'dadfb03c', 'dadfb8d4']
@@ -71,7 +75,7 @@ def __main__():
             time.sleep(30)
     finally:
         # Write summary metrics to txt file
-        with open("/Users/Jon/usra2026/data/traceroutes/traceroute_logs.txt", "a") as file: 
+        with open("/home/pc1/mesh-project/usra2026/data/traceroutes/traceroute_logs.txt", "a") as file: 
             file.write(f"Test completed: {testName}\n\n")
             for index, address in enumerate(addresses):
                 deliveryRate = (
