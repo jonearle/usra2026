@@ -30,8 +30,8 @@ def logToCSV(resultLog):
             fromNode = direction[x]
             toNode = direction[x + 2]
             snr = direction[x + 3]
-            path = fromNode + ', ' + toNode + ', ' + snr
-            csvWrite("/home/pc1/mesh-project/usra2026/data/traceroutes/goldberg.csv", path)
+            pathData = [fromNode, toNode, snr]
+            csvWrite("/home/pc1/mesh-project/usra2026/data/traceroutes/goldberg.csv", pathData)
 
 def __main__():
     addresses = ['6c73daa0', 'dadfb0cc', 'dadfb6c8', 'dadfb008', 'dadfb03c', 'dadfb8d4']
