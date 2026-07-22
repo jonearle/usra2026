@@ -5,13 +5,13 @@ map = folium.Map(location=[44.6488, -63.5930], zoom_start=5)
 
 routeCoordinates = []
 
-with open("/Users/Jon/usra2026/data/dynamic_test/dynamic_test.csv", mode='r') as file:
+with open("/Users/Jon/usra2026/data/all_snr.csv", mode='r') as file:
     reader = csv.DictReader(file)
     next(reader) # skip header
 
     for row in reader:
         lat = float(row['lat'])
-        long = float(row['long'])
+        long = float(row['lon'])
         snr = float(row['snr'])
 
         if snr > 10:
