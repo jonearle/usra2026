@@ -21,4 +21,6 @@ __pycache__
 adminongpsoff.sh
 adminon.sh
 
+# DS_Store
+.DS_Store
 
