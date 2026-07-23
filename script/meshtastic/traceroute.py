@@ -23,7 +23,7 @@ def logToCSV(resultLog):
 
     # Get path from tokens list and write to CSV
     for direction in tokens:
-        path = direction[0] + ', ' + direction[1] + ', ' + direction[2] # First path is the first 3
+        path = [direction[0], direction[1], direction[2]] # First path is the first 3
         csvWrite("/home/jonearle/usra2026/data/traceroutes/goldberg.csv", path)
 
         for x in range(1, len(direction) - 3, 2): # rest of the paths
