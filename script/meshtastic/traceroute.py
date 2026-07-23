@@ -24,17 +24,17 @@ def logToCSV(resultLog):
     # Get path from tokens list and write to CSV
     for direction in tokens:
         path = [direction[0], direction[1], direction[2]] # First path is the first 3
-        csvWrite("/home/jonearle/usra2026/data/traceroutes/goldberg.csv", path)
+        csvWrite("/home/jonearle/usra2026/data/traceroutes/LSCbiology.csv", path)
 
         for x in range(1, len(direction) - 3, 2): # rest of the paths
             fromNode = direction[x]
             toNode = direction[x + 2]
             snr = direction[x + 3]
             pathData = [fromNode, toNode, snr]
-            csvWrite("/home/jonearle/usra2026/data/traceroutes/goldberg.csv", pathData)
+            csvWrite("/home/jonearle/usra2026/data/traceroutes/LSCbiology.csv", pathData)
 
 def __main__():
-    addresses = ['dadfb0cc', 'dadfb6c8', 'dadfb008', 'dadfb03c']
+    addresses = ['dadfb0cc', 'dadfb6c8', '6c73daa0', 'dadfb03c']
     attempts = [0] * len(addresses)
     success = [0] * len(addresses)
     index = -1
