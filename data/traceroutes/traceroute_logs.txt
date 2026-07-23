@@ -1,164 +1,23 @@
-Test completed: DESK - Desktop Node -> Other nodes
-
-Address: 6c73daa0
-Attempted traceroutes: 1
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb0cc
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb6c8
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb008
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb03c
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb8d4
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
 ------------------------------------
-Test completed: DESK
-
-Address: 6c73daa0
-Attempted traceroutes: 1
-Successful traceroutes: 0
-Delivery rate: 0.00%
+Test completed: Desk Node (replacing GB window node) --> All
 
 Address: dadfb0cc
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
+Attempted traceroutes: 147
+Successful traceroutes: 116
+Delivery rate: 78.91%
 
 Address: dadfb6c8
-Attempted traceroutes: 0
+Attempted traceroutes: 146
 Successful traceroutes: 0
 Delivery rate: 0.00%
 
 Address: dadfb008
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
+Attempted traceroutes: 146
+Successful traceroutes: 44
+Delivery rate: 30.14%
 
 Address: dadfb03c
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb8d4
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-------------------------------------
-Test completed: DESK
-
-Address: 6c73daa0
-Attempted traceroutes: 1
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb0cc
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb6c8
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb008
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb03c
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb8d4
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-------------------------------------
-Test completed: DESK
-
-Address: 6c73daa0
-Attempted traceroutes: 1
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb0cc
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb6c8
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb008
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb03c
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb8d4
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-------------------------------------
-Test completed: DESK
-
-Address: 6c73daa0
-Attempted traceroutes: 1
-Successful traceroutes: 1
-Delivery rate: 100.00%
-
-Address: dadfb0cc
-Attempted traceroutes: 1
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb6c8
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb008
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb03c
-Attempted traceroutes: 0
-Successful traceroutes: 0
-Delivery rate: 0.00%
-
-Address: dadfb8d4
-Attempted traceroutes: 0
+Attempted traceroutes: 146
 Successful traceroutes: 0
 Delivery rate: 0.00%
 
