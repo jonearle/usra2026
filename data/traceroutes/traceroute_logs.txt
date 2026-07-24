@@ -22,3 +22,26 @@ Successful traceroutes: 0
 Delivery rate: 0.00%
 
 ------------------------------------
+Test completed: LSC Biology Traceroute Test
+
+Address: dadfb0cc
+Attempted traceroutes: 76
+Successful traceroutes: 57
+Delivery rate: 75.00%
+
+Address: dadfb6c8
+Attempted traceroutes: 76
+Successful traceroutes: 56
+Delivery rate: 73.68%
+
+Address: 6c73daa0
+Attempted traceroutes: 76
+Successful traceroutes: 59
+Delivery rate: 77.63%
+
+Address: dadfb03c
+Attempted traceroutes: 76
+Successful traceroutes: 15
+Delivery rate: 19.74%
+
+------------------------------------
