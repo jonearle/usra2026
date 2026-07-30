@@ -77,7 +77,7 @@ def get_summary_metrics():
 
     plt.show()
 
-def get_avg_node_distance():
+def get_min_node_distance():
     df_summary = pd.read_csv("/Users/Jon/usra2026/data/simulations/test/summary.csv")
     df_nodes = pd.read_csv("/Users/Jon/usra2026/data/simulations/test/nodes.csv", skip_blank_lines=False)
 
@@ -85,29 +85,31 @@ def get_avg_node_distance():
 
     ### Get avg distance metrics from nodes.csv ###
     for sim_id, group in df_nodes.groupby("simulation_id"):
-        distances = []
-        coords = list(zip(group["x_position_m"], group["y_position_m"]))
-        num_nodes = len(coords)
+        coords = list(zip(group["node_id"], group["x_position_m"], group["y_position_m"]))
+        number_of_nodes = len(coords)
+        
+        min_distances = []
+        for node_id, x, y in coords:
+            node_distances = []
+            for other_id, x_other, y_other in coords:
+                if node_id == other_id:
+                    continue
+                distance = math.hypot(x_other - x, y_other - y)
+                node_distances.append(distance)
+            min_distances.append(min(node_distances))
 
-        for node1, node2 in combinations(coords, 2):
-            x1, y1 = node1
-            x2, y2 = node2
-            distance = math.hypot(x2 - x1, y2 - y1)
-            distances.append(distance)
+        mean_min_distance = sum(min_distances) / len(min_distances)
+        results.append({
+            "sim_id": sim_id,
+            "number_of_nodes": number_of_nodes,
+            "mean_min_distance": mean_min_distance
+        })
 
-        avg_distance = sum(distances) / len(distances)
-        results.append(
-            {
-                "sim_id": sim_id,
-                "number_of_nodes": num_nodes,
-                "avg_distance": avg_distance,
-            }
-        )
     df_distances = pd.DataFrame(results)
 
-    avg_distance_grouped = (df_distances
+    min_distance_grouped = (df_distances
                 .groupby("number_of_nodes", as_index=False)
-                .agg(mean_distance_m=("avg_distance", "mean"), number_of_simulations=("sim_id", "count"),)
+                .agg(mean_distance_m=("mean_min_distance", "mean"), number_of_simulations=("sim_id", "count"),)
                 .sort_values("number_of_nodes")
                 )
 
@@ -120,7 +122,7 @@ def get_avg_node_distance():
         .sort_values("number_of_nodes")
     )
 
-    graph_data = node_reach_grouped.merge(avg_distance_grouped, on="number_of_nodes", how="inner",)
+    graph_data = node_reach_grouped.merge(min_distance_grouped, on="number_of_nodes", how="inner",)
     
     ### Now, graph the metrics ###   
     fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(13, 5), sharex=True)
