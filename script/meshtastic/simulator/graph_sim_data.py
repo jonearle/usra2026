@@ -154,4 +154,4 @@ def get_min_node_distance():
     plt.show()
 
 get_summary_metrics()
-get_avg_node_distance()
+get_min_node_distance()
