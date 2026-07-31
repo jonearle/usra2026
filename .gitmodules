@@ -1,4 +1,4 @@
 [submodule "Meshtasticator-GeoJSON"]
 	path = Meshtasticator-GeoJSON
 	url = https://github.com/jonearle/Meshtasticator-GeoJSON.git
-	branch = tbeam
+	branch = research
