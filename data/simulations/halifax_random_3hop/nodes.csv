@@ -1,4 +1,4 @@
-node_id,x_position_m,y_position_m,height_m,role,hop_limit,antenna_gain_dbi,message_period_ms,messages_created,packets_sent,rebroadcast_packets,packets_sensed,packets_detected,packets_received,collisions,useful_packets,packets_dropped_by_delay,tx_airtime_ms,direct_neighbor_count,is_moving,gps_enabled,simulation_id,simulation_id
+node_id,x_position_m,y_position_m,height_m,role,hop_limit,antenna_gain_dbi,message_period_ms,messages_created,packets_sent,rebroadcast_packets,packets_sensed,packets_detected,packets_received,collisions,useful_packets,packets_dropped_by_delay,tx_airtime_ms,direct_neighbor_count,is_moving,gps_enabled,simulation_id
 0,-1616.0772834796776,1617.478817790282,1.0,CLIENT,3,0.0,100000,16,51,0,58,82,58,0,33,7,53164.03200000003,2,False,False,0
 1,-1104.1544066690005,2158.1600577904183,1.0,CLIENT,3,0.0,100000,17,50,0,101,102,91,10,32,29,52121.60000000003,2,False,False,0
 2,-602.6062044969111,-693.0791022095693,1.0,CLIENT,3,0.0,100000,12,48,0,0,0,0,0,0,0,50036.736000000026,0,False,False,0
