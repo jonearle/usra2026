@@ -5,25 +5,29 @@ map = folium.Map(location=[44.6488, -63.5930], zoom_start=5)
 
 routeCoordinates = []
 
-with open("/Users/Jon/usra2026/data/all_snr.csv", mode='r') as file:
+with open("/Users/Jon/usra2026/data/bike_comparison_test/meshcore.csv", mode='r') as file:
     reader = csv.DictReader(file)
     next(reader) # skip header
 
     for row in reader:
         lat = float(row['lat'])
-        long = float(row['lon'])
+        long = float(row['long'])
         snr = float(row['snr'])
 
         if snr > 10:
             color = "darkgreen"
         elif snr > 5:
-            color = "green"
+            color = "limegreen"
         elif snr > 0:
-            color = "yellow"
+            color = "yellowgreen"
         elif snr > -5:
-            color = "orange"
+            color = "gold"
         elif snr > -10:
+            color = "orangered"
+        elif snr > -15:
             color = "red"
+        elif snr > -20:
+            color = "firebrick"
         else:
             color = "darkred"
 

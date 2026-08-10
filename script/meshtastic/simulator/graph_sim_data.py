@@ -204,16 +204,18 @@ def get_min_node_distance(*node_paths):
                                 .sort_values("number_of_nodes")
                                 )
 
+    print(df_list_distances_grouped)
     return df_list_distances_grouped
 
-set_node_count("/Users/Jon/usra2026/data/simulations/halifax_random_7hop/summary.csv")
-#set_simulation_id("/Users/Jon/usra2026/data/simulations/halifax_random_7hop/nodes.csv")
+#set_node_count("/Users/Jon/usra2026/data/simulations/default_config/summary.csv")
+#set_simulation_id("/Users/Jon/usra2026/data/simulations/default_config/nodes.csv")
+
 df_distances = get_min_node_distance(
-    "/Users/Jon/usra2026/data/simulations/halifax_random_3hop/nodes.csv", 
+    "/Users/Jon/usra2026/data/simulations/halifax_random_3hop/nodes.csv",
     "/Users/Jon/usra2026/data/simulations/halifax_random_7hop/nodes.csv"
 )
 graph_metrics(
-    "/Users/Jon/usra2026/data/simulations/halifax_random_3hop/summary.csv", 
-    "/Users/Jon/usra2026/data/simulations/halifax_random_7hop/summary.csv",
+    "/Users/Jon/usra2026/data/simulations/halifax_random_3hop/summary.csv",
+    "/Users/Jon/usra2026/data/simulations/halifax_random_7hop/summary.csv" ,
     df_distances=df_distances
 )
