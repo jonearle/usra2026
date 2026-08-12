@@ -1,6 +1,6 @@
 (AI Generated README)
 
-# Evaluation of LoRa Mesh Networks in an Urban Environment
+# Evaluation of LoRa Mesh Networks in an Urban Environment 
 
 Project for Summer 2026 NSERC USRA
 
