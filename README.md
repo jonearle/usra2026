@@ -1,4 +1,4 @@
-* (AI Generated) *
+(AI Generated)
 
 # Evaluation of LoRa Mesh Networks in an Urban Environment
 
