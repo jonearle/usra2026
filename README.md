@@ -104,7 +104,7 @@ usra2026/
 │
 ├── USRA 2026 Final Paper/      # Final report, LaTeX source, figures, and bibliography
 ├── Presentations/              # Research presentations
-├── Other/                      # Additional project material
+├── Poster/                     # Final poster presentation and related materials
 └── README.md
 ```
 
