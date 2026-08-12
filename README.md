@@ -2,7 +2,7 @@
 
 # Evaluation of LoRa Mesh Networks in an Urban Environment
 
-This repository contains the code, experimental data, simulations, figures, presentations, and final report from my **2026 NSERC Undergraduate Student Research Award (USRA)** project at **Dalhousie University**.
+Project for Summer 2026 NSERC USRA
 
 The project investigates the effectiveness and scalability of **LoRa mesh networks in urban environments**, with a particular focus on the open-source [Meshtastic](https://meshtastic.org/) firmware. Real-world experiments were conducted throughout Halifax and on the Dalhousie University campus, alongside simulations of larger networks using a modified version of Meshtasticator.
 
