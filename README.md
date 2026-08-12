@@ -1,4 +1,4 @@
-(AI Generated)
+(AI Generated README)
 
 # Evaluation of LoRa Mesh Networks in an Urban Environment
 
