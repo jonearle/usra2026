@@ -228,7 +228,3 @@ Overall, the project found that:
 NSERC USRA 2026
 Dalhousie University
 
-## Acknowledgements
-
-This work was completed as part of an **NSERC Undergraduate Student Research Award (USRA)** at Dalhousie University during Summer 2026.
-
