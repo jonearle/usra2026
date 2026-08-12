@@ -1,7 +1,6 @@
 (AI Generated README)
 
-# Summer 2026 NSERC USRA Project
-# Dalhousie University
+# Summer 2026 NSERC USRA Project - Dalhousie University
 
 Evaluation of LoRa Mesh Networks in an Urban Environment 
 
